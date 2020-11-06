@@ -28,9 +28,9 @@ jobs:
       - name: Create Pull Request
         uses: cloudposse/actions/github/create-pull-request@0.20.0
         with:
-          token: ${{ secrets.GITHUB_BOT_TOKEN }}
-          commit-message: Update ${{ steps.update.outputs.package_name }} to ${{ steps.current.outputs.package_version }} → ${{ steps.update.outputs.package_version }}
-          title: Update ${{ steps.update.outputs.package_name }} to ${{ steps.update.outputs.package_version }}
+          token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
+          commit-message: Update context.tf from origin source
+          title: Update context.tf
           body: |-
             ## what
             This is an auto-generated PR that updates the context.tf file
@@ -64,9 +64,9 @@ jobs:
       - name: Create Pull Request
         uses: cloudposse/actions/github/create-pull-request@0.20.0
         with:
-          token: ${{ secrets.GITHUB_BOT_TOKEN }}
-          commit-message: Update ${{ steps.update.outputs.package_name }} to ${{ steps.current.outputs.package_version }} → ${{ steps.update.outputs.package_version }}
-          title: Update ${{ steps.update.outputs.package_name }} to ${{ steps.update.outputs.package_version }}
+          token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
+          commit-message: Update README.md and docs
+          title: Update README.md and docs
           body: |-
             ## what
             This is an auto-generated PR that updates the README.md and docs
