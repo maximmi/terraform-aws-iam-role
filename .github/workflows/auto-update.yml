@@ -23,9 +23,14 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         run: |
-          [[ ! -f context.tf ]]
-          curl -o context.tf https://raw.githubusercontent.com/cloudposse/terraform-null-label/master/exports/context.tf
-          ! git diff HEAD HEAD~1 --no-patch --exit-code context.tf
+          if [[ ! -f context.tf ]]; then
+            echo "context.tf exist! Fetching most recent version to see if there is an update"
+            curl -o context.tf https://raw.githubusercontent.com/cloudposse/terraform-null-label/master/exports/context.tf
+            ! git diff HEAD HEAD~1 --no-patch --exit-code context.tf
+          else
+            echo "context.tf does not exist! It is not enough to fetch context.tf, module requires to be updated to support it."
+            exit 1
+          fi
 
       - name: Create Pull Request
         if: success()
