@@ -26,7 +26,7 @@ jobs:
           if [[ -f context.tf ]]; then
             echo "context.tf exist! Fetching most recent version to see if there is an update"
             curl -o context.tf https://raw.githubusercontent.com/cloudposse/terraform-null-label/master/exports/context.tf
-            git diff --no-patch --exit-code context.tf && echo "no changes" || echo "context.tf updated"
+            ! git diff --no-patch --exit-code context.tf
           else
             echo "context.tf does not exist! It is not enough to fetch context.tf, module requires to be updated to support it."
             exit 1
