@@ -23,7 +23,7 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         run: |
-          if [[ ! -f context.tf ]]; then
+          if [[ -f context.tf ]]; then
             echo "context.tf exist! Fetching most recent version to see if there is an update"
             curl -o context.tf https://raw.githubusercontent.com/cloudposse/terraform-null-label/master/exports/context.tf
             ! git diff HEAD HEAD~1 --no-patch --exit-code context.tf
