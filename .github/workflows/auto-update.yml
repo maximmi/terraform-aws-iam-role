@@ -23,7 +23,7 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         run: |
-          [ ! -f context.tf ]; exit 1
+          [ ! -f context.tf ]
           curl -o context.tf https://raw.githubusercontent.com/cloudposse/terraform-null-label/master/exports/context.tf
           ! git diff HEAD HEAD~1 --no-patch --exit-code context.tf
 
