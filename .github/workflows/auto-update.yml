@@ -23,9 +23,12 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         run: |
-          make -C .github update/context
+          [ ! -e context.tf ]; exit 0
+          curl -o context.tf https://raw.githubusercontent.com/cloudposse/terraform-null-label/master/exports/context.tf
+          ! git diff HEAD HEAD~1 --no-patch --exit-code context.tf
 
       - name: Create Pull Request
+        if: success()
         uses: cloudposse/actions/github/create-pull-request@0.20.0
         with:
           token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
