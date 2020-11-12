@@ -1,4 +1,3 @@
-
 #
 # ONLY EDIT THIS FILE IN github.com/cloudposse/terraform-null-label
 # All other instances of this file should be a copy of that one
@@ -20,7 +19,7 @@
 #
 
 module "this" {
-  source = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.19.2"
+  source = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.21.0"
 
   enabled             = var.enabled
   namespace           = var.namespace
