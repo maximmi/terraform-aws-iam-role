@@ -1,6 +1,7 @@
 {
   "extends": [
-    "config:base",
-    "pinVersions"
-  ]
+    "config:base"
+  ],
+  "enabledManagers": ["terraform"],
+  "terraformDependencyType": "module"
 }
