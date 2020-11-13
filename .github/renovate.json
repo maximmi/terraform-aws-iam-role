@@ -4,8 +4,5 @@
   ],
   "rangeStrategy": "auto",
   "enabledManagers": ["terraform"],
-  "automerge": false,
-  "schedule": [
-    "after 2am"
-  ]
+  "automerge": false
 }
