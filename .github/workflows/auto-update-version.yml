@@ -17,12 +17,13 @@ jobs:
         env:
           LATEST_TAG: ${{ github.event.release.tag_name }}
         run: |
+          version = "0.22.0"
           echo "Checking if exports/context.tf match replace pattern exactly once"
-          [[ $(grep -Ec '(\s*source \= \".*ref\=tags\/)([0-9]+\.[0-9]+\.[0-9]+)' exports/context.tf) = 1 ]]
+          [[ $(grep -Ec '(\s*version\s*\=\s*\")([0-9]+\.[0-9]+\.[0-9]+)(\")' exports/context.tf) = 1 ]]
           echo "Checking that LATEST_TAG fetched properly: '$LATEST_TAG'"
           echo $LATEST_TAG | grep -Eq '^\d+\.\d+\.\d+$'
           echo "Replacing exports/context.tf version pinning with new: $LATEST_TAG"
-          sed -Ei 's/(\s*source \= \".*ref\=tags\/)([0-9]+\.[0-9]+\.[0-9]+)/\1'$LATEST_TAG'/g' exports/context.tf
+          sed -Ei 's/(\s*version\s*\=\s*\")([0-9]+\.[0-9]+\.[0-9]+)(\")/\1'$LATEST_TAG'\3/g' exports/context.tf
 
       - name: Create Pull Request
         uses: cloudposse/actions/github/create-pull-request@0.20.0

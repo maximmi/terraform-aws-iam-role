@@ -8,6 +8,8 @@ on:
 jobs:
   semver:
     runs-on: ubuntu-latest
+    # Check if 'do-not-release' label set, skip if so. Used for auto-update 'exports/context.tf' version pinning.
+    if: "!contains(github.event.pull_request.labels.*.name, 'do-not-release')"
     steps:
       # Drafts your next Release notes as Pull Requests are merged into "master"
       - uses: release-drafter/release-drafter@v5
@@ -16,4 +18,4 @@ jobs:
           prerelease: false
           config-name: auto-release.yml
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
