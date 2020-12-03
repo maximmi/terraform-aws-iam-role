@@ -5,7 +5,7 @@ on:
 
 jobs:
   update:
-    if: github.event_name == 'schedule'
+    if: github.event_name == 'release'
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -17,7 +17,6 @@ jobs:
         env:
           LATEST_TAG: ${{ github.event.release.tag_name }}
         run: |
-          version = "0.22.0"
           echo "Checking if exports/context.tf match replace pattern exactly once"
           [[ $(grep -Ec '(\s*version\s*\=\s*\")([0-9]+\.[0-9]+\.[0-9]+)(\")' exports/context.tf) = 1 ]]
           echo "Checking that LATEST_TAG fetched properly: '$LATEST_TAG'"
