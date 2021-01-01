@@ -20,7 +20,7 @@
 
 module "this" {
   source  = "cloudposse/label/null"
-  version = "0.14.0" // requires Terraform >= 0.12.26
+  version = "0.15.0" // requires Terraform >= 0.12.26
   enabled             = var.enabled
   namespace           = var.namespace
   environment         = var.environment
